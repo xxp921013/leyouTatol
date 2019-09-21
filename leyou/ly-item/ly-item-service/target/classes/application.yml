@@ -1,0 +1,37 @@
+server:
+  port: 8091
+eureka:
+  client:
+    service-url:
+      defaultZone: http://127.0.0.1:10086/eureka
+  instance:
+    ip-address: 127.0.0.1
+    prefer-ip-address: true
+spring:
+  mvc:
+    servlet:
+      path: /
+  application:
+    name: item-service
+  datasource:
+    url: jdbc:mysql://127.0.0.1:3306/leyou
+    password: root
+    username: root
+  rabbitmq:
+    host: 192.168.199.128
+    username: admin
+    password: admin
+    virtual-host: /leyou
+    template:
+      #重试参数
+      retry:
+        enabled: true
+        initial-interval: 10000ms
+        max-interval: 30000ms
+        multiplier: 2
+      exchange: ly.item.exchange
+    #发送确认
+    publisher-confirms: true
+mybatis:
+  configuration:
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl

@@ -1,0 +1,42 @@
+server:
+  port: 8099
+eureka:
+  client:
+    service-url:
+      defaultZone: http://127.0.0.1:10086/eureka
+    registry-fetch-interval-seconds: 5
+  instance:
+    ip-address: 127.0.0.1
+    prefer-ip-address: true
+spring:
+  jackson:
+    default-property-inclusion: non_null
+  application:
+    name: order-service
+  datasource:
+    url: jdbc:mysql://127.0.0.1:3306/leyou
+    password: root
+    username: root
+  rabbitmq:
+    host: 192.168.199.128
+    username: admin
+    password: admin
+    virtual-host: /leyou
+mybatis:
+  configuration:
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+  type-aliases-package: xu.leyou.order.pojo
+ly:
+  jwt:
+    pubKeyPath: K:\\leyou\\key\\rsa.pub #公钥
+    cookieName: LY_TOKEN #cookie name
+  worker:
+    workerId: 1
+    dataCenterId: 1
+  pay:
+    appId: wx8397 #公众账号id
+    mchId: 147342680 #商户号
+    key: dsdf45d5sd4f5sd   #签名秘钥
+    httpConnectTimeoutMs: 1000  #连接超时时间
+    httpReadTimeoutMs: 8000     #读取超时时间
+    notifyUrl: http://api.leyou.com/api/wxpay/notify            #下单通知回调地址

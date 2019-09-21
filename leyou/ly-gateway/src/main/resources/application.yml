@@ -1,0 +1,52 @@
+server:
+  port: 10010
+spring:
+  application:
+    name: ly-gateway
+eureka:
+  client:
+    service-url:
+      defaultZone: http://127.0.0.1:10086/eureka
+  instance:
+    ip-address: 127.0.0.1
+    prefer-ip-address: true
+zuul:
+  prefix: /api #全局前缀
+  routes:
+    item-service: /item/**
+    search-service: /search/**
+    cart-service: /cart/**
+    user-service: /user/**
+    auth-service: /auth/**
+    order-service: /order/**
+    upload-service:
+      path: /upload/**
+      serviceId: upload-service
+      strip-prefix: false #保留前缀
+  #ignored-services: upload-service  #网关过滤,因为在nginx端做了配置上传服务不会经过网关会直接到微服务然后fdfs上传,不占网关的缓存,为防止直接访问网关加一个忽略
+  add-host-header: true #添加host头信息
+  sensitive-headers:
+hystrix:
+  command:
+    default:
+      execution:
+        isolation:
+          thread:
+            timeoutInMilliseconds: 5000 #熔断超时时长
+ribbon:
+  ConnectTimeout: 1000 #连接超时时长
+  ReadTimeout: 3500 #读取超时
+  MaxAutoRetries: 0 #重试次数
+  MaxAutoRetriesNextServer: 0 #切换重试次数
+ly:
+  jwt:
+    pubKeyPath: K:\\leyou\\key\\rsa.pub #公钥
+    cookieName: LY_TOKEN #cookie name
+  filter:
+    allowPaths:
+      - /api/auth
+      - /api/search
+      - /api/user/register
+      - /api/user/check
+      - /api/user/code
+      - /api/item
