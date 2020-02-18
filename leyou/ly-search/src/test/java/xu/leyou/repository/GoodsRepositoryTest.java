@@ -25,4 +25,5 @@ public class GoodsRepositoryTest {
         et.createIndex(Goods.class);
         et.putMapping(Goods.class);
     }
+
 }

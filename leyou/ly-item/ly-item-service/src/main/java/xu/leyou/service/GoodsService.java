@@ -1,5 +1,6 @@
 package xu.leyou.service;
 
+import lombok.extern.slf4j.Slf4j;
 import org.apache.ibatis.annotations.Insert;
 import org.springframework.amqp.core.AmqpTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,6 +24,7 @@ import java.util.Date;
 import java.util.List;
 
 @Service
+@Slf4j
 public class GoodsService {
     @Autowired
     private SpuMapper spuMapper;
@@ -45,7 +47,9 @@ public class GoodsService {
         spu.setValid(true);
         int z = spuMapper.insert(spu);
         if (z != 1) {
+            log.error("");
             throw new LyException(ExceptionEnums.ADD_SPU_ERROR);
+
         }
         System.out.println(spu.getId());
         for (Sku sku : spu.getSkus()) {

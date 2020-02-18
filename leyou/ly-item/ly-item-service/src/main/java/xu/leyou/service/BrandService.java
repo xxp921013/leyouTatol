@@ -6,6 +6,7 @@ import org.apache.commons.lang3.StringUtils;
 import org.springframework.amqp.core.AmqpTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.CollectionUtils;
 import tk.mybatis.mapper.entity.Example;
@@ -15,8 +16,17 @@ import xu.leyou.item.pojo.Brand;
 import xu.leyou.mapper.BrandMapper;
 import xu.leyou.vo.PageResult;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+import java.util.Set;
 
+/**
+ * 服务层
+ *
+ * @author Administrator
+ */
+@SuppressWarnings({"ALL", "AlibabaTransactionMustHaveRollback"})
 @Service
 public class BrandService {
     @Autowired
@@ -50,7 +60,7 @@ public class BrandService {
         return new PageResult<Brand>(pageInfo.getTotal(), brands);
     }
 
-    @Transactional
+    @Transactional(propagation = Propagation.REQUIRED, rollbackFor = Exception.class)
     public void addBrand(Brand brand, List<Long> cids) {
         //新增品牌
         System.out.println("id-----" + brand.getId());

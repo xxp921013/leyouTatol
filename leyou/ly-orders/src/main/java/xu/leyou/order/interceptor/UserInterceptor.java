@@ -24,7 +24,6 @@ public class UserInterceptor implements HandlerInterceptor {
     private static final ThreadLocal<UserInfo> tl = new ThreadLocal<>();
 
     @Override
-
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
         String token = CookieUtils.getCookieValue(request, jwtConfig.getCookieName());
         //String token = request.getHeader("LY_TOKEN");

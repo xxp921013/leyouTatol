@@ -23,6 +23,7 @@ import xu.leyou.pojo.UserInfo;
 
 import javax.validation.constraints.NotNull;
 import java.util.*;
+import java.util.concurrent.*;
 import java.util.stream.Collectors;
 
 @Service
@@ -97,8 +98,7 @@ public class OrderService {
         orderStatusMapper.insertSelective(orderStatus);
         //下单,减库存
         List<CartDto> carts = orderDto.getCarts();
-        goodsClient.reduceStock(carts);
-        return orderId;
+        goodsClient.reduceStock(carts);return orderId;
 
 
     }

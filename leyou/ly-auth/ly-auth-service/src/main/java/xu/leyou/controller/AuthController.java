@@ -31,6 +31,7 @@ public class AuthController {
     public ResponseEntity<String> login(@RequestParam("username") String username, @RequestParam("password") String password, HttpServletResponse resp, HttpServletRequest req) {
         String token = authService.login(username, password);
         //写入cookie
+
         CookieUtils.setCookie(req, resp, jwtConfig.getCookieName(), token, jwtConfig.getExpire() * 60 * 24);
         return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
     }
@@ -42,6 +43,7 @@ public class AuthController {
             throw new LyException(ExceptionEnums.UN_AUTHORIZED);
         }
         try {
+
             System.out.println(token);
             //解析token
             UserInfo userInfo = JwtUtils.getInfoFromToken(token, jwtConfig.getPublicKey());

@@ -16,6 +16,7 @@ import xu.leyou.pojo.UserInfo;
 import xu.leyou.utils.JwtUtils;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 @Component
 @EnableConfigurationProperties({JwtConfig.class, FilterConfig.class})
@@ -73,8 +74,11 @@ public class AuthFilter extends ZuulFilter {
             //拦截
             context.setSendZuulResponse(false);
             context.setResponseStatusCode(403);
+            context.setResponseBody("权限不足");
+            context.getResponse().setContentType("text/html;charset=utf-8");
         }
         //TODO 校验权限
         return null;
     }
+
 }

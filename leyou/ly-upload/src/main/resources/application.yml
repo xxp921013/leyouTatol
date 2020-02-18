@@ -11,6 +11,7 @@ spring:
   servlet:
     multipart:
       max-file-size: 5MB #文件上传大小限制
+
 server:
   port: 8092
 fdfs:

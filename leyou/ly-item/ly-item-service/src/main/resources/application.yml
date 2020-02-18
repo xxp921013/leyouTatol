@@ -32,6 +32,7 @@ spring:
       exchange: ly.item.exchange
     #发送确认
     publisher-confirms: true
+    publisher-returns: true
 mybatis:
   configuration:
     log-impl: org.apache.ibatis.logging.stdout.StdOutImpl

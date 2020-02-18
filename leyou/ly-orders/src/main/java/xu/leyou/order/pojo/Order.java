@@ -13,7 +13,7 @@ public class Order {
 
     @Id
     private Long orderId;// id
-    @NotNull
+    @NotNull(message = "")
     private Long totalPay;// 总金额
     @NotNull
     private Long actualPay;// 实付金额

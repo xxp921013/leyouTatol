@@ -62,6 +62,7 @@ public class PageService {
         try {
             //上下文
             Context context = new Context();
+            //加载数据
             context.setVariables(loadModel(id));
             //输出流
             File file = new File("K:\\leyou\\upload", id + ".html");
