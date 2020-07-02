@@ -36,7 +36,7 @@
         <java.version>1.8</java.version>
         <spring-cloud.version>Finchley.SR1</spring-cloud.version>
         <mapper.starter.version>2.1.5</mapper.starter.version>
-        <mysql.version>5.1.48</mysql.version>
+        <mysql.version>8.0.16</mysql.version>
         <pagehelper.starter.version>1.2.12</pagehelper.starter.version>
         <fastdfs.client.version>1.26.7</fastdfs.client.version>
         <leyou.latest.version>1.0.0-SNAPSHOT</leyou.latest.version>
